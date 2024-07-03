@@ -1,9 +1,10 @@
 ---
 title: Back Propagation
-date: 2024-06-11 13:37:00 +09:00
+date: 2024-06-12 13:37:00 +09:00
 categories: [AI, Deep Learning]
 tags: [AI, ML, Deep Learning, Deeplearning, DeepLearnging, Study, Yeardream, Back Propagation]		# TAG는 반드시 소문자로 이루어져야함!
 use_math: true
+publishe: true
 ---
 # 1. 합성 함수의 Chain Rule
 $f(x,y) = ax^2 + by + c$<br>
@@ -56,5 +57,3 @@ $$
 ## Logistic Regression에서의  Backpropagation
 ## Linear layer에서의 Backproppagation
 ## Softmax layer에서의 Backpropagation
-
-ㄴㄴㄴㄴ
