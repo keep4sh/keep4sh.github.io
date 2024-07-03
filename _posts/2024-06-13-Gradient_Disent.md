@@ -58,6 +58,7 @@ Gradient Descent를 통해서 $w - {\operatorname{d}\!L(w)\over\operatorname{d}\
 2. Local Minima에 빠질 수 있다.
 
 이를 해결하기 위해서 우리는 Learning Rate를 주어서 Weights를 업데이트 하게 된다.   
+
 $$w= w-\alpha(\text{learning Rate}) {\operatorname{d}\!L(w)\over\operatorname{d}\!w}$$
 
 |Learning Rate의 크기|특징|
@@ -65,4 +66,13 @@ $$w= w-\alpha(\text{learning Rate}) {\operatorname{d}\!L(w)\over\operatorname{d}
 |작을 때|Loss가 줄어드는 양이 작다. / 너무 작을 경우 Loss가 줄어들지 않을 수도 있다.|
 
 위 특징들로 인해 적절한 Learning Rate를 설정하는 것이 중요하다.
+
+# 5. Learning Rate Scheduler
+
+Learning Rate를 Loss가 줄어듬에 따라서 조정할 수 있게 설정하는 방법이 존재한다.   
+Epoch이 커짐에 따라서 Loss가 줄어들게 되고 이에 따라 Learning Rate를 줄이면 된다.   
+이 방식을 Learning Rate Scheduler 기법이라고 한다.
+
+1. Step Decay : 정해진 Epoch 마다 Learning Rate를 절반씩 줄여나가는 방식이다.
+2. Exponential Decay : Learning Rate를 지수 함수처럼 줄여나가는 방식이다. 얼마나 줄여나갈지를 정할 수 있으며 학습 초기에 빠른 학습을 위해 Learning Rate를 크게 잡고 진행하고 Epoch이 진행됨에 따라 줄여가는 방식이다.
 
