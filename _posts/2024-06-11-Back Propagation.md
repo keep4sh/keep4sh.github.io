@@ -56,3 +56,5 @@ $$
 ## Logistic Regression에서의  Backpropagation
 ## Linear layer에서의 Backproppagation
 ## Softmax layer에서의 Backpropagation
+
+ㄴㄴㄴㄴ
