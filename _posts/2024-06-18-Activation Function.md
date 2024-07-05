@@ -52,7 +52,7 @@ $$
 \tanh(x) = 2 \times sigmoid(x) -1
 $$
 
-![Tanh Graph](../assets/img/function/)
+![Tanh Graph](../assets/img/function/Tanh)
 다만 여전히 Input이 양 극으로 갈 경우 Gradient가 소실되는 문제가 발생한다. 즉 Input의 절댓값이 커질 경우 생기는 문제이다. 
 
 # 3. ReLU
@@ -65,6 +65,8 @@ f(x) = max(0,x)\\
     1& where x \geq 0
 \end{cases}
 $$
+
+![ReLU](../assets/img/function/ReLU.png)
 ReLU는 Input을 0과 비교하여서 비선형성을 주는 함수가 된다. 이로 인해서 Gradient가 너무 작아서 발생하였던 Vanishing Gradient, 경사소실 문제는 발생할 확률이 적어졌다. (사라진 것은 아님.)
 하지만 Input이 0보다 작을 경우 여러가지 문제들이 발생한다. 
 
