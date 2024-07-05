@@ -28,6 +28,17 @@ $$
 \sigma(x) = \frac{e^x}{e^x + 1} = \frac{1}{1+e^-x}
 $$
 
+![sigmoid](../assets/img/function/sigmoid.png)   
+이 함수는 특정 기준을 갖고 기준 보다 클 경우 1, 작을 경우 0으로 바꿀 수 있게 해준다. 다만 input = 0 일 경우 0.5 가나온 다는 특징 또한 가지고 있다.
+
+- Sigmoid의 미분
+Sigmoid의 기울기를 구할 때 한가지 알아야할 부분은 $\sigma(x)$의 미분은 다음과 같음이다.
+$$
+\sigma \prime(x) = \sigma(x)(1-\sigma(x))
+$$
+Sigmoid의 미분 시 만약 Input x가 $-\infin \text{ 혹은 } \infin$으로 수렴할 경우 Gradient는 0으로 수렴하면서 소실되며 가장 기울기가 큰 지점은 $x=0$인 지점이다.
+![Sigmoid의 미분](../assets/img/function/sigmoid%20prime.png)
+
 # 2. Tahn
 
 # 3. ReLU
