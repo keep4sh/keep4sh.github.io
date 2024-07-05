@@ -66,7 +66,6 @@ f(x) = max(0,x)\\
 \end{cases}
 $$
 
-![ReLU](../assets/img/function/ReLU.png)
 ReLU는 Input을 0과 비교하여서 비선형성을 주는 함수가 된다. 이로 인해서 Gradient가 너무 작아서 발생하였던 Vanishing Gradient, 경사소실 문제는 발생할 확률이 적어졌다. (사라진 것은 아님.)
 하지만 Input이 0보다 작을 경우 여러가지 문제들이 발생한다. 
 
