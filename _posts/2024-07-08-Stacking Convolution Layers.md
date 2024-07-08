@@ -66,3 +66,20 @@ $$
 > Image Segmentation Task 에서는 이미지의 모든 픽셀에 대해서 Classification을 진행하기에 1 x 1 filter를 사용하기도 한다.
 
 # 5. Pooling
+우리의 지금까지 연산을 요약해보자.
+
+$$
+Input : C_{in} \times w \times h\\
+\text{Conv Layer} : C_{in} \times C_{out} \times w \times h \times k(\text{필터 갯수})\\
+\text{Output} : C_{out} \times w`\times h` \times k
+$$
+
+이 연산을 진행하게 되면서 우리의 데이터는 점점 그 사이즈가 커져간다. 연산의 복잡도가 올라가면서 그 효율 또한 떨어질 것이다. 떄문에 우리는 이 커져가는 데이터를 의미를 담고 있는 작은 데이터로 나눌 방식을 생각하게 될 것이다.    
+이러한 배경을 통해 등장한 것이 Pooling이다. Pooling은 원본 데이터에서 필터의 사이즈만큼을 보고 해당 부분을 대표하는 데이터로 치환하여 Conv 연산하듯이 진행한다.
+
+## Max Pooling
+![Maxpooling](../assets/img/CNN/MaxPooling.png)
+각 부분을 확인해보면 가장 큰 값을 가져오는 것을 확인할 수 있다. 이렇게 가져온 데이터를 통해 연산이 진행된다. 이 과정에서 파라미터는 존재하지 않고 연산이 가능하게 되며 데이터가 계속해서 커져가는 것을 방지하는 방안으로써 사용할 수 있다.
+
+## Average Pooling
+Max Pooling에서는 최대값을 가져왔다면 Average Pooling은 해당 필터 내의 평균을 가져와서 연산을 진행한다. 이는 여러 CNN Layer거친 데이터를 FC Layer를 통해 결과값을 도출하지 않고 연산하고 싶을 때, 즉 CNN Layer만을 갖고 연산을 진행할 때도 사용한다.
