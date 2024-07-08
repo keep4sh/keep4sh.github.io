@@ -1,7 +1,7 @@
 ---
 title: CNN, Convolutional Network
 date: 2024-07-07 15:51:42 +09:00
-categories: [Model Architecture]
+categories: [CNN]
 tags: [Deep Learning, Study, Convolutional Neural Nework, CNN]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 
