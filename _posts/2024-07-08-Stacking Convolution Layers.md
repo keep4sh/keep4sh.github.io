@@ -31,7 +31,7 @@ tags: [Deep Learning, Study, Convolutional Neural Nework, CNN]		# TAG는 반드�
 ![Padding](../assets/img/CNN/padding.png)
 위 예시에서 원 데이터 테두리에 파란 부분처럼 아무 의미없는 0을 갖는 Pixel을 붙여주는 것이다. 0인 Pixel을 붙여주는 것을 **Zero Padding**이라고 한다. 이를 통해서 기존에 필터와 Stride의 사용 때문에 발생한 정보의 손실을 줄일 수 있게 된다.
 
-![Padding_1](../assets/img/CNN/zeroPadding.png)
+![Padding_1](../assets/img/CNN/zeropadding.png)
 
 기존 결과물이 5 x 5으로 나왔던 것과 달리 Padding을 줌으로써 7 x 7가 되었다. Output이 담고 있는 정보가 커진 것이다.
 
