@@ -30,7 +30,15 @@ tags: [Deep Learning, Study, Convolutional Neural Nework, CNN]		# TAG는 반드�
 # 2.  Multi Filter
 우리는 자연스럽게 필터가 다양하게 적용될 수 있다고 생각할 수 있다. 위 단락에서 처럼 0을 잘 보여주는 필터를 3개 적용한 것처럼 말이다. 이렇게 여러개의 필터를 적용하여 유사도를 확인한 매트릭스들이 필터의 갯수 만큼 나올 것이다. 우리의 예시를 갖고 생각해보면 다음과 같다.
 
-|원본 데이터| 9x9 |
-|필터 사이즈 및 갯수| 3 x 3 x 3|
-|각 필터를 기준으로 만든 유사도 map|3 x 3 x 3|
+|원본 데이터| 3x9x9 | C_in x Weight x Height|
+|필터 사이즈 및 갯수| 6 x 3 x 3 x 3| Filter(C_out) x C_in x Weight x Height|
+|각 필터를 기준으로 만든 유사도 map|6 x 3 x 8 x 8| Filter(C_out) x Weight\` x Height\`|
 |Bias vector의 갯수| 필터와 동일한 3개|
+
+우리는 위 과정을 데이터 셋을 가지고 진행한다. 즉 원본 데이터 하나만을 가지고 진행하는 것이 아닌 여러 데이터를 가지고 진행한다. 또한 Bias 역시 연산 과정에 들어간다.
+
+|Iteration별 원본 데이터| N(Batch) x C_in x Weight x Height|
+|필터 연산 (Conv 연산)| N(Batch) x C_in x C_out x Weight x Height + Bias(Filter 별로)|
+|Output|N(Batch) x C_out x Weight\` x Height\`|
+
+CNN Layer에서 Filter의 갯수만 Hyper Parametre의 형태로 주고 Relu Layer를 적용하면서 학습을 진행한다. 
