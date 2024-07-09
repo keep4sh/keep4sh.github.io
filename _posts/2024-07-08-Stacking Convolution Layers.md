@@ -3,6 +3,7 @@ title: Stride, Padding, Pooling
 date: 2024-07-08 10:10:42 +09:00
 categories: [CNN]
 tags: [Deep Learning, Study, Convolutional Neural Nework, CNN]		# TAG는 반드시 소문자로 이루어져야함!
+use_math: true
 ---
 
 지난 포스팅으로 Convolutional Neural Network의 기본적인 연산에 대해서 작성했다.     
@@ -54,9 +55,9 @@ tags: [Deep Learning, Study, Convolutional Neural Nework, CNN]		# TAG는 반드�
 하지만 이렇게 여러 Layer로 Conv 연산을 시행하는 것에 문제점이 있다. 이전의 포스팅에서 활성함수 관련 내용을 기억하는가?
 
 $$
-h1 = w_1x + b_1\\
-h2 = w_2h_1 + b_2\\
-h2 = w_tx + b_t
+h_1 = w_1x + b_1
+h_2 = w_2h_1 + b_2
+h_t = w_tx + b_t
 $$
 
 활성 함수 없이 Layer만 계속해서 쌓는다면 이는 결국 하나의 Layer로 연산하는 것과 크게 다르지 않다고 설명했었다. 그렇다. CNN에서도 마찬가지이다. 활성 함수 없이 계속해서 Layer를 쌓는 것은 결국 하나의 Layer를 쌓는 것과 결과값이 다르지 않다는 것이다. 때문에 우리는 ReLU와 같은 활성함수를 CNN Layer 뒤에 붙여 주는 것이다.
@@ -69,7 +70,7 @@ $$
 우리의 지금까지 연산을 요약해보자.
 
 $$
-Input : C_{in} \times w \times h\\
+\text{Input :} C_{in} \times w \times h\\
 \text{Conv Layer} : C_{in} \times C_{out} \times w \times h \times k(\text{필터 갯수})\\
 \text{Output} : C_{out} \times w`\times h` \times k
 $$
