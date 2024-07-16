@@ -51,4 +51,4 @@ publishe: true
 
  [위키피디아-소리](https://ko.wikipedia.org/wiki/소리)<br>
  [위키피디아-진동](https://ko.wikipedia.org/wiki/진동)<br>
- [정보통신기술용어해설](http://www.ktword.co.kr/test/view/view.php?m_temp1=978)
+ 정보통신기술용어해설 - http://www.ktword.co.kr/test/view/view.php?m_temp1=978
