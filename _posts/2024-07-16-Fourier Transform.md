@@ -67,7 +67,7 @@ $$\cos(\theta) + i\sin(\theta)$$
  지난 포스팅에서 우리는 신호를 Sample_rate 단위로 나눈 이후 각 단위의 대표값으로 컴퓨터가 이해할 수 있게 이진 코드로 변환한다고 배웠다. 이렇게 구해진 이진 코드에 이진 푸리에 변환을 시행한다.
  내 블로그에서는 처음이지만 코드로 살펴보자.
 
- ```Python
+ ```python
 import numpy as np
 import torch
 import matplotlib.pyplot as plt
@@ -103,6 +103,7 @@ plt.grid()
 plt.xlim(0, sample_rate/2) 
 plt.show()
  ```
+
 ![시간 축 기준](../assets/img/DSP/timedomain.png)
 ![주파수 축 기준](../assets/img/DSP/frequencydomain.png)
 
@@ -118,9 +119,9 @@ plt.show()
 
 이를 해결하고자 등장한 부분이 Short Time Foureir Transform이다. 우리의 오디오 신호를 보다 작은 단위로 나눈다. (Sample_rate와는 다르다! 오해하지 말 것) 나눠진 구간 마다 푸리에 변환을 시행한다. 시간 단위를 나누어서 주파수 축을 보기에 시간의 흐름에 따른 주파수의 변화도 확인할 수 있다는 것이 STFT의 장점이다!
 솔직히 이부분에서 놀랍다. 주파수 축만 확인할 수 있으니 시간을 잘개 나누어서 신호의 주파수의 변화를 살펴보려는 시도가 정말 놀랍다.
-
 마찬가지로 코드로 살펴보자
-```Python
+
+```python
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.io import wavfile
@@ -142,8 +143,8 @@ def stft(x, window_size, hop_size):
     return stft_matrix
 
 # Parameters
-window_size = 1024
 hop_size = 512
+window_size = 1024
 
 # Compute STFT
 stft_result = stft(data, window_size, hop_size)
@@ -161,8 +162,8 @@ plt.xlabel('Time (s)')
 plt.colorbar(label='Magnitude')
 plt.ylim(0, sample_rate / 2)  # Limit y-axis to Nyquist frequency
 plt.show()
-
 ```
+
 ![Short time fourier transform](../assets/img/DSP/short_time_ft.png)
 Stft 구현은 어려워서 GPT에게 도움 받았다. <br>
 Shft 시행 시 몇가지 중요값들이 필요하다. 
