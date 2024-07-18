@@ -13,13 +13,13 @@ publishe: true
 > 저번 포스팅에서 조금 타이트하게 공부해서 힘들겠지만 이번 포스팅 내용도 차근히 정리합시다. 비교적 내용은 적습니다.
 
 <p align=center> 주요 개념 </p>
-> 인간 청각의 특징
-> Mel-Scale
-> Mel-Filter bank
+> 인간 청각의 특징 <br>
+> Mel-Scale <br>
+> Mel-Filter bank <br>
 
 # 1. 인간 청각의 특징
 잠깐 인간이 소리를 듣는 과정에 대해서 알아보자. <br>
-> 청각은 $\text{소리 발생} \rightarrow \text{귓바퀴} \rightarrow \text{외이도} \rightarrow \text{고막} \rightarrow \text{귓속뼈} \rightarrow \text{달패이관} \rightarrow \text{청각 세포} \rightarrow \text{청각 신경 경로}$를 따라서 진행된다.
+> 청각은 $\text{소리 발생} \rightarrow \text{귓바퀴} \rightarrow \text{외이도} \rightarrow \text{고막} \rightarrow \text{귓속뼈} \rightarrow \text{달팽이관} \rightarrow \text{청각 세포} \rightarrow \text{청각 신경 경로}$를 따라서 진행된다.
 > 귓바퀴에 모인 음파가 외이도로 들어가서 고막(귀청)을 진동시키면, 이 진동은 가운뎃귀의 청소골에서 진동이 증폭되어 속귀의 달팽이관의 난원창에 전해지고, 난원창의 진동이 림프액에 전달되어 청세포를 흥분시킨다. 그리하여 청세포의 흥분이 청신경에 의해 대뇌에 전달되면 소리를 느끼게 된다.
 
 [참고 : 위키피디아-청각](https://ko.wikipedia.org/wiki/청각)
@@ -33,8 +33,9 @@ publishe: true
 따라서 오디오 신호의 주파수를 직접 변환하거나 다루는 것이 아닌 인간이 인지 가능하게 변환하는 Mel-Scale을 사용해서 적용하는 것이다.<br>
 Mel-Scale은 동일한 차이를 갖는 저주파수와 고주파수를 동일하게 느낄 수 있도록 측정하기 위해서 등장한 단위이다.<br>
 인간이 하향하는 소리의 스케일을 들으면서 다양한 주파수의 소리를 듣고 실질적으로 동일한 거리만큼 떨어져 있다고 인지한 주파수를 기준으로 Scaling을 진행한 것이다.
+
 ![멜 스케일의 주파수 함수](../assets/img/DSP/Mel-scale.png)
 
-주파수를 Mel-Scale로 변경함은 저주파수 영역에서 보다 민감하게 반응하고 고주파수 영역에 대해서 보다 둔감하게 반응하는 인간의 청각을 반영한 방식이다. 이후 계속해서 나올 Mel-Spectrum은 주파수의 단위를 
+주파수를 Mel-Scale로 변경함은 저주파수 영역에서 보다 민감하게 반응하고 고주파수 영역에 대해서 보다 둔감하게 반응하는 인간의 청각을 반영한 방식이다. 인간의 가청 주파수 보다 높았던 소리들을 압축하는 느낌이다.
 
 # 3. Mel-Filter bank
