@@ -44,3 +44,43 @@ NLinear : input의 마지막 값으로 자기 자신을 빼주어서 연산을 �
 Patch TST :  
 
 TimesNet / TSLib이라는 라이블러리 아주 중요하다.
+
+
+ Dilated Causal Convolution
+
+
+ # 2. 시계열 이상 탐지
+
+ Time Series anomaly detecton
+ - 평균값, 주기성, 노이즈 발생 등. / 경향성을 벗어나느 것을 이상치로 하여 탐지
+ - method 별로 윈도우 단계로, point 별로 abnomaly를 측정 가능
+
+## Reconstructor 기반
+
+### LSTM Autoencoder
+인코딩하고, 디코딩 시 Restruction을 진행 -> Reconstruction error를 기준으로 이상 데이터 구분.
+
+만약 학습에서의 분포와 다른 분포가 들어오면 Reconstruction이 제대로 진행되지 않아서 abnomal로 탐지할 수 있음.
+
+### USAD - 강의 중 구현도 진행
+- Adversarial Training
+
+## Reconstructor Error 기반이 아닌 이상탐지
+
+### MAD-GAN
+일반 구조 자체는 GAN과 동일함.
+Abnormal을 찾고 싶은 window를 GAN Inversen으로 찾아서 generator의 Input으로 넣어줌.
+-> Discriminator Loss, Reconstruction error의 합으로 Score 사용
+
+
+### Anomaly Transformer
+Series 내 데이터들 중 abnomal한 포인트는 자신과 가까운 곳들만 높은 연관성을 가진다. (Series 중 abnomal이 적다는 가정이 깔려있었어야 함.)
+
+학습은 일반 Transformer를 사용한다.
+- LSTM 때 처럼 Reconstruction Error를 사용할 수도 있다.
+- 그렇기에 Attention Vector로 뽑을 수 있고 Abnomal은 Gaussian으로 표현된다. 
+- Association에 대한 설명들 정리
+
+
+
+시계열 코드들은 거기서 거기임. (TSLib에서 기반)
