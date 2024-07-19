@@ -15,7 +15,7 @@ use_math: true
 > Padding    
 > Pooling    
 
-
+---
 # 1. Stride
 원 데이터 N x N을 Filter인 F x F를 한칸 씩 이동하는 예시로 지난 시간 CNN의 기본 연산을 이야기 했다. 필터가 그 사이즈에 맞춰서 원본 데이터를 한 칸씩 이동하면서 연산하는 것이다.    
 지금의 예시는 Stride가 1인 상황이다. **만약 Stride가 2라면** Filter는 원 데이터를 2칸씩 띄어 가면서 연산하게 된다.
@@ -27,6 +27,7 @@ use_math: true
 두 칸씩 이동한 결과이다. 기존에 Output이 5 x 5로 나왔던 것과 달리 3 x 3의 형태로 Output이 형성되는 모습이다.
 이렇게 연산의 과정을 줄임으로써 연산의 효율이 올라가는 Stride이나 Output의 사이즈가 계속해서 줄어들기에 Conv Layer가 쌓이면 쌓일 수록 정보의 손실이 계속해서 생길 수 있다.
 
+---
 # 2. Padding
 위의 정보 손실을 해결하기 위한 방안 중 하나로 Padding이 등장하였다.
 ![Padding](../assets/img/CNN/padding.png)
@@ -36,7 +37,7 @@ use_math: true
 
 기존 결과물이 5 x 5으로 나왔던 것과 달리 Padding을 줌으로써 7 x 7가 되었다. Output이 담고 있는 정보가 커진 것이다.
 
-
+---
 # 3. CNN 중첩의 문제점
 우리가 CNN Layer를 여러 번 쌓는다고 하였을 때 마지막 Output은 원본에서 얼마만큼의 데이터를 담고 있을까? 
 9 x 9 데이터를 3 x 3 필터를 2번 통과 시킨다고 생각하면 다음과 같은 과정이 상상 될 것이다.
