@@ -43,7 +43,7 @@ NLinear : input의 마지막 값으로 자기 자신을 빼주어서 연산을 �
 
 Patch TST :  
 
-TimesNet / TSLib이라는 라이블러리 아주 중요하다.
+TimesNet / TSLib이라는 라이브러리 아주 중요하다.
 
 
  Dilated Causal Convolution
