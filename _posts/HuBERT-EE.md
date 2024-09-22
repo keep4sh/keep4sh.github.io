@@ -1,0 +1,46 @@
+---
+title:  HuBERT-EE : Early Exiting HuBERT
+date: 2024-09-10 13:00:00 +09:00
+categories: [AI, Deep Learning, Speech Recognization]
+tags: [AI, ML, Deep Learning, Deeplearning, DeepLearnging, Study, Yeardream, Model, ASR]		# TAG는 반드시 소문자로 이루어져야함!
+use_math: true
+---
+
+# 1. Abstract
+self - supervised 모델들 (HuBERT, wav2vec과 같은 모델)들은 ASR 분야에서 굉장한 퍼포먼스를 보여준다. 현재도 많은 사람들이 wav2vec 2.0을 활용하고 있다. 하지만 이 모델들은 높은 퍼포먼스를 위해서 Computational Resource가 굉장히 많이 들어가며, 추론 시간에서 단점을 보여준다. 이 논문에서는 HuBERT 모델에서 LLM에서 사용되는 Early Exiting 기법을 적용, Inference 시간을 단축하고자 한 모델이다.
+
+# 2. Model Architecture
+![HuBERT-EE](../assets/img/HuBERT%20-%20EE/HuBERT-EE.png)
+
+## 2-1. HuBERT Model
+![HuBERT](../assets/img/HuBERT%20-%20EE/HuBERT.png)
+
+ HuBERT-EE 모델에 대해서 확인하기 전 HuBERT 모델에 관해서 알아보자. LLM 모델에서 사용되었던 BERT 모델에 Hidden unit이 붙어서 HuBERT 모델이다. Hidden unit은 음성 신호를 클러스터링을 통해서 생성한 가짜 레이블을 말한다.
+ Input으로 Waveform을 푸리에 변환을 통해 변환한 mel - spectogram을 가진다. 이를 CNN을 통해서 Feature Encoding을 진행, 이 결과값을 Clustering을 진행한다. 이를 통해서 Label을 생성, 모델은 이 Label을 예측하도록 Bert 형태로 학습된다.
+
+## 2-2. HuBERT - EE
+ HuBERT Architecture에서 Transformer Layer는 실제 구현 시 총 12개 존재한다. Early Exit 기법을 구현하기 위해서 이 12개의 Layer에 Early Exit Branch를 형성, 매 Layer 마다 Cofidence score를 측정한다.
+
+## 2-3. Confidence score란?
+ Confidence score는 네트워크의 Output에 대해서 얼마나 신뢰할 수 있는지를 수치화한 것이다.본 논문에서는 2가지 방식으로 이를 측정한다.
+### 2-3-1. Entropy
+$$
+\text{Entropy}  = -\frac{1}{\text{T} \times \text{C}}\sum_{T} \sum_{C} f_i(x) \times \log f_i(x)
+$$
+
+Entropy는 불확실성을 측정할 수 있는 수치이다. $i^{th}$의 Branch에서의 Output이 가지는 Entropy를 측정 Early Exit을 수행한다.
+이 임계값을 논문에선는 **0.0040, 0.0035, 0.0025**로 실험 하였다. 이 중 **0.0035**가 가장 좋은 성능을 보여주었다.
+
+### 2-3-2. Confidence
+$$
+\text{Confidence} = \frac{1}{T} \sum_{T} \max_{C}f_i(x)^{(C)}
+$$
+
+Confidence는 Softmax에서 나온 확률값의 최대값을 의미한다. HuBERT-EE에서 CTC framework를 사용하기 때문에 각 타임 스텝마다의 어떤 클래스로 나올지를 측정한다. 이 중 가장 높은 확률값을 가지는 Output의 Softmax 값을 확인, 충분히 높다고 판단되면 Early Exit을 수행한다.
+이 임계값을 논문에서는 **0.950, 0.955, 0.960**로 실험 하였다. 0.955로 설정 시 가장 좋은 성능을 보여주었다.
+
+## 2-4.Limitations and Conclusions
+논문의 실험 결과 Entropy를 기준으로한 실험 결과가 비교적 좋은 성능을 보였다. WER도 6.5%, 추론 속도도 2.999가 나왔다. 하지만 Entropy 기반 추론의 경우 CTC의 특성으로 인해 Entropy 값이 작아지며, 임계점의 설정 부분 등 민감한 요소들이 많다고 설명한다. 때문에 데이터 셋에 따라 이러한 임계점을 신중히 선택하여 불필요한 연산을 피해야한다고 설명한다.
+
+## 3. My thought
+이러한 기법을 사용해서 언젠가 실시간으로 모델과 Input과 Output을 교환할 수 있는 것이 가능할 지 궁금하다. 현재의 많은 모델들이 User의 Input을 통해서 연산, 이를 Output으로 연산하여서 제공한다. 하지만 모델의 연산 과정 중에 새로운 Input이 확인 현재 시점에 진행되는 연산들의 Confidence, 또는 맥락적 관점에서 새로운 Inference를 진행하는 등 새로운 방향성을 갖게 될 수 있는지 궁금하다.
